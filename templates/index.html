@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}Upload File{% endblock %}
+{% block body %}
+    <h1>Upload Scan File</h1>
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <input type="submit" value="Upload">
+
+    <input type="button" value="ScanToWord" class="btn_scan">
+    <input type="button" value="Clear" class="btn_clear">
+    <div class="card" >
+        <img src="{{ filemessage }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">your photo will be here
+        {{ filemessage }}</p>
+            
+        </div>
+    </div>
+</form>
+{% endblock %}

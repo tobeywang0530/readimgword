@@ -1,0 +1,33 @@
+<!doctype html>
+
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script type="text/javascript">
+      $(function () {
+          $('.btn_clear').click(function () {
+              if (confirm("Are you sure to cleared this page?"))
+                  window.location.href = "/";
+              else
+                  return false;
+          })
+      });
+  </script>
+    
+	{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-info">
+    {% for message in messages %}
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{ message }}
+    {% endfor %}
+    </div>
+    {% endif %}
+	{% endwith %}
+</head>
+
+{% block body %}{% endblock %}
