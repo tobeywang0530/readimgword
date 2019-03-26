@@ -1,1 +1,3 @@
 runtime: python37
+skip_files:
+- ^Tesseract-OCR/libtesseract-4.dll$
