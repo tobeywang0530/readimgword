@@ -79,8 +79,8 @@ def scan():
             full_filename=filename
             img = Image.open(full_filename)
             full_text=ocr.image_to_string(img, lang='chi_tra',config=tessdata_dir_config)
-        except :
-            full_text='can not reading this image:'+filename+' error:'+sys.exc_info()[0]
+        except Exception as e:
+            full_text='can not reading this image--'+filename+' error--'+str(e)
     else:
         full_text='no file name '
     return jsonify(result=full_text)

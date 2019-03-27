@@ -28,7 +28,7 @@
                       console.log("second success");
                   }).fail(function (jqxhr, textStatus, error) {
                       var err = textStatus + ", " + error;
-                      console.log("error"+err);
+                      console.log("error:"+err);
                   })
                   .always(function () {
                       $('.btn_scan').prop('disabled', false);
