@@ -23,6 +23,7 @@
                   $.getJSON('/_scan', {
                       filename: filename
                   }, function (data) {
+                      console.log("success:"+data.result);
                       $(".p_text").html(data.result.replace(/\:/g, ':<br>'));
                   }).done(function () {
                       console.log("second success");
