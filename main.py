@@ -6,9 +6,11 @@ Created on Thu May 10 08:50:45 2018
 """
 
 import os
+import sys
 from flask import Flask, flash, request, redirect, url_for, render_template
-from flask import send_from_directory,Response,session
+from flask import send_from_directory,jsonify,Response,session
 from werkzeug.utils import secure_filename
+
 
 app = Flask(__name__)
 
@@ -61,8 +63,28 @@ def show(filename):
 #        flash('file is not exist')
 #    url = photos.url(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     full_filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-    return render_template('index.html',filemessage=full_filename)  
-    
+    return render_template('index.html',filemessage=full_filename) 
+from PIL import Image
+import pytesseract as ocr 
+@app.route('/_scan')
+def scan():
+    filename = request.args.get('filename', 0, type=str)
+    full_text=''
+    if(filename!=''):
+        try:
+            ocr.pytesseract.tesseract_cmd = r'Tesseract-OCR\tesseract.exe'
+            tessdata_dir_config = '--tessdata-dir "Tesseract-OCR\\tessdata"'
+            #get file
+            #full_filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            full_filename=filename
+            img = Image.open(full_filename)
+            full_text=ocr.image_to_string(img, lang='chi_tra',config=tessdata_dir_config)
+        except :
+            full_text='can not reading this image:'+filename+' error:'+sys.exc_info()[0]
+    else:
+        full_text='no file name '
+    return jsonify(result=full_text)
+#    return render_template('index.html',textmessage=full_text)  
 if __name__ == '__main__':
- app.run(host='127.0.0.1', port=5000, debug=True)
+ app.run(host='127.0.0.1', port=8000, debug=True)
  

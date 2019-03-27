@@ -15,6 +15,32 @@
               else
                   return false;
           })
+          $('.btn_scan').click(function (event) {
+              event.preventDefault();
+              filename = $('.img_result').attr('src');
+              $(this).attr('disabled', 'disabled');
+              if (filename != '' && filename != undefined) {
+                  $.getJSON('/_scan', {
+                      filename: filename
+                  }, function (data) {
+                      $(".p_text").html(data.result.replace(/\:/g, ':<br>'));
+                  }).done(function () {
+                      console.log("second success");
+                  }).fail(function () {
+                      console.log("error");
+                  })
+                  .always(function () {
+                      $('.btn_scan').prop('disabled', false);
+                      alert('Complete')
+                  });;
+              }
+              else {
+                  alert('loss got ' + filename)
+
+                  $(this).prop('disabled', false);
+              }
+              return false;
+          })
       });
   </script>
     
