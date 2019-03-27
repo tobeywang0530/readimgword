@@ -26,8 +26,9 @@
                       $(".p_text").html(data.result.replace(/\:/g, ':<br>'));
                   }).done(function () {
                       console.log("second success");
-                  }).fail(function () {
-                      console.log("error");
+                  }).fail(function (jqxhr, textStatus, error) {
+                      var err = textStatus + ", " + error;
+                      console.log("error"+err);
                   })
                   .always(function () {
                       $('.btn_scan').prop('disabled', false);
