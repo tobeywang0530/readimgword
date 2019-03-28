@@ -87,13 +87,7 @@ def scan():
         except Exception as e:
             full_text='can not reading this image--'+filename+' error--'+str(e)+' path='+str(os.path)
     else:
-        ocr.pytesseract.tesseract_cmd =r'Tesseract-OCR/tesseract.exe' 
-        
-        tessdata_dir_config = '--tessdata-dir "Tesseract-OCR\\tessdata"'
-        full_filename=filename
-        img = Image.open(os.path.join(app.config['UPLOAD_FOLDER'], 'abc.png'))
-        full_text=ocr.image_to_string(img, lang='chi_tra',config=tessdata_dir_config)
-#        full_text='no file name '
+        full_text='no file name '
     return jsonify(result=full_text)
 #    return render_template('index.html',textmessage=full_text)  
 if __name__ == '__main__':
