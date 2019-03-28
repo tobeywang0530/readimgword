@@ -73,13 +73,16 @@ def scan():
     full_text=''
     if(filename!=''):
         try:
-            #ocr.pytesseract.tesseract_cmd =r'Tesseract-OCR/tesseract.exe' 
-            tessdata_dir_config = '--tessdata-dir "Tesseract-OCR\\tessdata"'
+#            ocr.pytesseract.tesseract_cmd =r'static/Tesseract-OCR/tesseract.exe' 
+            ocr.pytesseract.tesseract_cmd =r'/home/cathaysiteit/readimgword/Tesseract-OCR/tesseract.exe' 
+            
+#            tessdata_dir_config = '--tessdata-dir "static\\Tesseract-OCR\\tessdata"'
+            tessdata_dir_config = '--tessdata-dir "\\home\\cathaysiteit\\readimgword\\Tesseract-OCR\\tessdata"'
             #get file
             #full_filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             full_filename=filename
             img = Image.open(full_filename)
-            full_text=ocr.image_to_string(img, lang='chi_tra')
+            full_text=ocr.image_to_string(img, lang='chi_tra',config=tessdata_dir_config)
         except Exception as e:
             full_text='can not reading this image--'+filename+' error--'+str(e)
     else:
