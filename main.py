@@ -73,8 +73,8 @@ def scan():
     full_text=''
     if(filename!=''):
         try:
-            ocr.pytesseract.tesseract_cmd =OCR_FOLDER+ r'/tesseract.exe'
-            tessdata_dir_config = '--tessdata-dir "'+OCR_FOLDER+'\\tessdata"'
+            ocr.pytesseract.tesseract_cmd =r'Tesseract-OCR/tesseract.exe' 
+            tessdata_dir_config = '--tessdata-dir "Tesseract-OCR\\tessdata"'
             #get file
             #full_filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             full_filename=filename
