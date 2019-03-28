@@ -19,7 +19,7 @@
               event.preventDefault();
               filename = $('.img_result').attr('src');
               $(this).attr('disabled', 'disabled');
-              //if (filename != '' && filename != undefined) {
+              if (filename != '' && filename != undefined) {
                   $.getJSON('/_scan', {
                       filename: filename
                   }, function (data) {
@@ -35,12 +35,12 @@
                       $('.btn_scan').prop('disabled', false);
                       alert('Complete')
                   });;
-              //}
-              //else {
-              //    alert('loss got ' + filename)
+              }
+              else {
+                  alert('loss got ' + filename)
 
-              //    $(this).prop('disabled', false);
-              //}
+                  $(this).prop('disabled', false);
+              }
               return false;
           })
       });
